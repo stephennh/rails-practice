@@ -8,8 +8,20 @@ class ContactsController < ApplicationController
   end
 
   def create
+    @contact = Contact.new(contact_params)
+    @contact.save
+    redirect_to contacts_url
   end
 
   def show
   end
+
+
+private
+
+  def contact_params
+    params.require(:contact).permit(:first_name, :last_name, :email, :note)
+  end
+
+
 end
